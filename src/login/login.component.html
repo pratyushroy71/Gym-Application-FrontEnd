@@ -1,0 +1,58 @@
+
+   <div class="login-container">
+    <mat-card class="login-card">
+      <mat-card-header class="header-container">
+        <div class="logo-container">
+          <img src="assets/gym.jpg" alt="Gym Logo" class="logo" />
+        </div>
+        <mat-card-title>
+          <h3 class="title">{{ isLogin ? 'Welcome Back!' : 'Join Us!' }}</h3>
+        </mat-card-title>
+        <mat-card-subtitle class="subtitle">
+          {{ isLogin ? 'Please log in to continue' : 'Create your account' }}
+        </mat-card-subtitle>
+      </mat-card-header>
+  
+      <mat-card-content>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <mat-form-field appearance="outline" class="full-width" *ngIf="!isLogin">
+            <mat-label>Name</mat-label>
+            <input matInput formControlName="name" placeholder="Enter your name" />
+            <mat-error *ngIf="loginForm.get('name')?.invalid && loginForm.get('name')?.touched">
+              Name is required
+            </mat-error>
+          </mat-form-field>
+  
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email" type="email" placeholder="Enter your email" />
+            <mat-error *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+              Please enter a valid email
+            </mat-error>
+          </mat-form-field>
+  
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Password</mat-label>
+            <input matInput formControlName="password" type="password" placeholder="Enter your password" />
+            <mat-error *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+              Password is required
+            </mat-error>
+          </mat-form-field>
+  
+          <div class="button-container">
+            <button mat-raised-button color="primary" class="login-button" type="submit" [disabled]="loginForm.invalid">
+              {{ isLogin ? 'Login' : 'Sign Up' }}
+            </button>
+          </div>
+        </form>
+      </mat-card-content>
+  
+      <mat-card-footer>
+        <p class="footer-text">
+          {{ isLogin ? 'Not a member?' : 'Already have an account?' }}
+          <a (click)="toggleMode()" class="register-link">{{ isLogin ? 'Join now' : 'Login here' }}</a>
+        </p>
+      </mat-card-footer>
+    </mat-card>
+  </div>
+  

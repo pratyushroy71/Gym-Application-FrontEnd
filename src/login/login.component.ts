@@ -9,7 +9,8 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { LoginService } from '../services/login.service';
 import { HttpClientModule } from '@angular/common/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -24,13 +25,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HttpClientModule
   ],
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
+  providers:[]
 })
 export class LoginComponent {
-  loginForm: FormGroup;
+  loginForm!: FormGroup;
   isLogin: boolean = true; 
 
-  constructor(private fb: FormBuilder, private router: Router, private loginService: LoginService) {
+  constructor(private fb: FormBuilder, private router: Router, private loginService: LoginService,private toaster: ToastrService) {
     this.loginForm = this.fb.group({
       name: [''], 
       email: ['', [Validators.required, Validators.email]],
@@ -50,26 +52,24 @@ export class LoginComponent {
         // Call login API
         this.loginService.login(email, password).subscribe(
           (response) => {
-            console.log('Login successful', response);
             localStorage.setItem('token', response.token);
             this.router.navigate(['/landing']);
+            this.toaster.success('Login Successful');
           },
           (error) => {
-            console.error('Login failed', error);
-            alert('Invalid email or password.');
+            this.toaster.error(error.error.msg);
           }
         );
       } else {
         // Call sign-up API
         this.loginService.register(name, email, password).subscribe(
           (response) => {
-            console.log('Sign Up successful', response);
+            this.toaster.success('Login Successful');
             localStorage.setItem('token', response.token);
             this.router.navigate(['/landing']);
           },
           (error) => {
-            console.error('Sign Up failed', error);
-            alert('Registration failed. Please try again.');
+            this.toaster.error(error.error.msg);
           }
         );
       }

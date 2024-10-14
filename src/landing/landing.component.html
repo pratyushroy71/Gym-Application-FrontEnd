@@ -1,5 +1,72 @@
-<div class="landing-container">
+<!-- <div class="landing-container">
     <h1>Welcome to GymPro!</h1>
     <p>This is your landing page after login. Future content will be placed here.</p>
     <button (click)="signOut()">Sign-Out</button>
-  </div>
+  </div> -->
+
+
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness Club</title>
+    <link rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="logo">Fitness Club</div>
+            <ul class="nav-links" style="padding-right: 60px;">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#classes">Classes</a></li>
+                <li><a href="#membership">Membership</a></li>
+                <li><a href="#contact">Contact Us</a></li>
+                <li (click)="signOut()"><a >Sign Out</a></li>
+            </ul>
+            <!-- <a href="#join" class="btn join-btn">Join Now</a> -->
+        </nav>
+        <div class="header-content">
+            <h1>Welcome to Fitness Club</h1>
+            <p>Your Journey to a Healthier You Starts Here</p>
+            <a href="#join" class="btn">Join Now</a>
+        </div>
+    </header>
+
+    <section class="services" id="classes">
+        <h2>Our Services</h2>
+        <div class="service-cards">
+            <div class="card">
+                 <img src="assets/cardio.jpg" alt="Cardio"> 
+                <h3>Cardio Training</h3>
+                <p>Boost your stamina with our cardio sessions.</p>
+            </div>
+            <div class="card">
+                <img src="assets/weightlifting.jpg" alt="Weightlifting">
+                <h3>Weight Lifting</h3>
+                <p>Build strength and muscle with our guided sessions.</p>
+            </div>
+            <div class="card">
+                 <img src="assets/yoga.jpg" alt="Yoga"> 
+                <h3>Yoga & Stretching</h3>
+                <p>Find balance and flexibility through yoga.</p>
+            </div>
+            <div class="card">
+                <img src="assets/training.jpg" alt="Personal Training">
+                <h3>Personal Training</h3>
+                <p>Customized plans tailored to your goals.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>Follow us on</p>
+        <div class="social-media">
+            <a href="#" class="social-icon">Facebook</a>
+            <a href="#" class="social-icon">Instagram</a>
+            <a href="#" class="social-icon">Twitter</a>
+        </div>
+        <p>&copy; 2024 Fitness Club. All rights reserved.</p>
+    </footer>
+</body>
+</html>
